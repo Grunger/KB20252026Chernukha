@@ -17,8 +17,11 @@ def load_notes():
 
 def save_notes():
     """Сохранение задач в файл"""
-    with open('notes.json', 'w', encoding='utf-8') as f:
-        json.dump(notes_list, f, ensure_ascii=False, indent=4)
+    try:
+        with open('notes.json', 'w', encoding='utf-8') as f:
+            json.dump(notes_list, f, ensure_ascii=False, indent=4)
+    except (FileNotFoundError, json.JSONDecodeError):
+        print('Error Write File')
   
 def add_note():
     """Добавление задачи"""
